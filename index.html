@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slice Heaven - Artisanal Pizzaaa
+       Shop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600;700&display=swap');
+        
+        :root {
+            --primary: #e63946;
+            --secondary: #f1faee;
+            --accent: #457b9d;
+            --dark: #1d3557;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .logo-text {
+            font-family: 'Pacifico', cursive;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            min-height: 80vh;
+        }
+        
+        .pizza-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .pizza-card {
+            transition: all 0.3s ease;
+        }
+        
+        .topping-selector {
+            display: none;
+        }
+        
+        .topping-selector.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .cart-item {
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center">
+                        <i class="fas fa-pizza-slice text-3xl text-red-500"></i>
+                        <span class="logo-text text-2xl ml-2 text-red-500">Slice Heaven</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-800 hover:text-red-500 transition">Home</a>
+                    <a href="#menu" class="text-gray-800 hover:text-red-500 transition">Menu</a>
+                    <a href="#about" class="text-gray-800 hover:text-red-500 transition">About</a>
+                    <a href="#contact" class="text-gray-800 hover:text-red-500 transition">Contact</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="cart-btn" class="relative text-gray-800 hover:text-red-500 transition">
+                        <i class="fas fa-shopping-cart text-xl"></i>
+                        <span id="cart-count" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                    </button>
+                    <button class="md:hidden text-gray-800 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero flex items-center justify-center text-white">
+        <div class="text-center px-4">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Artisanal Pizza Crafted with Loveeeeee</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">Hand-tossed dough, premium ingredients, and recipes perfected over generations.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#menu" class="bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 transform hover:scale-105">View Menu</a>
+                <a href="#contact" class="bg-transparent border-2 border-white hover:bg-white hover:text-red-500 text-white font-bold py-3 px-6 rounded-full transition duration-300 transform hover:scale-105">Order Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Offers -->
+    <section class="bg-red-50 py-8">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center justify-between bg-white rounded-xl shadow-md p-6">
+                <div class="mb-4 md:mb-0">
+                    <h3 class="text-xl font-bold text-red-500">Today's Special!</h3>
+                    <p class="text-gray-700">Margherita Pizza - Only $9.99</p>
+                </div>
+                <div class="flex items-center">
+                    <span class="text-gray-500 mr-2">Offer ends in:</span>
+                    <div class="flex gap-2">
+                        <div class="bg-red-500 text-white rounded px-3 py-1 font-bold">12</div>
+                        <div class="bg-red-500 text-white rounded px-3 py-1 font-bold">34</div>
+                        <div class="bg-red-500 text-white rounded px-3 py-1 font-bold">56</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our Signature Pizzas</h2>
+                <div class="w-20 h-1 bg-red-500 mx-auto"></div>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Each pizza is made with our secret dough recipe and cooked in a traditional stone oven.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Pizza 1 -->
+                <div class="pizza-card bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1081&q=80" alt="Margherita Pizza" class="w-full h-64 object-cover">
+                        <div class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">$12.99</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Margherita Classiccc</h3>
+                        <p class="text-gray-600 mb-4">San Marzano tomato sauce, fresh mozzarella, basil, and extra virgin olive oil.</p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex">
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star-half-alt text-yellow-400"></i>
+                            </div>
+                            <button class="add-to-cart-btn bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-full transition" data-name="Margherita Classic" data-price="12.99">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pizza 2 -->
+                <div class="pizza-card bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1542282811-943ef1a977c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80" alt=" Pizza" class="w-full h-64 object-cover">
+                        <div class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">$14.99</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Pepperoni Supreme</h3>
+                        <p class="text-gray-600 mb-4">Tomato sauce, mozzarella, spicy pepperoni, and a blend of Italian herbs.</p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex">
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                            </div>
+                            <button class="add-to-cart-btn bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-full transition" data-name="Pepperoni Supreme" data-price="14.99">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pizza 3 -->
+                <div class="pizza-card bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1593504049359-74330189a345?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1227&q=80" alt="Vegetarian Pizza" class="w-full h-64 object-cover">
+                        <div class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">$13.99</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Garden Fresh</h3>
+                        <p class="text-gray-600 mb-4">Tomato sauce, mozzarella, bell peppers, mushrooms, red onions, and black olives.</p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex">
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="far fa-star text-yellow-400"></i>
+                            </div>
+                            <button class="add-to-cart-btn bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-full transition" data-name="Garden Fresh" data-price="13.99">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pizza 4 -->
+                <div class="pizza-card bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1601924582970-9238bcb495d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1018&q=80" alt="BBQ Chicken Pizza" class="w-full h-64 object-cover">
+                        <div class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">$15.99</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">BBQ Chicken</h3>
+                        <p class="text-gray-600 mb-4">BBQ sauce, mozzarella, grilled chicken, red onions, and cilantro.</p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex">
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star-half-alt text-yellow-400"></i>
+                            </div>
+                            <button class="add-to-cart-btn bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-full transition" data-name="BBQ Chicken" data-price="15.99">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pizza 5 -->
+                <div class="pizza-card bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1627626775846-122b778965ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80" alt="Truffle Pizza" class="w-full h-64 object-cover">
+                        <div class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">$17.99</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Truffle Delight</h3>
+                        <p class="text-gray-600 mb-4">Cream sauce, mozzarella, wild mushrooms, truffle oil, and arugula.</p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex">
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                            </div>
+                            <button class="add-to-cart-btn bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-full transition" data-name="Truffle Delight" data-price="17.99">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pizza 6 -->
+                <div class="pizza-card bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1613564834361-9436948817d1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1043&q=80" alt="Hawaiian Pizza" class="w-full h-64 object-cover">
+                        <div class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">$14.99</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Tropical Hawaiian</h3>
+                        <p class="text-gray-600 mb-4">Tomato sauce, mozzarella, ham, pineapple, and a touch of coconut.</p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex">
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="far fa-star text-yellow-400"></i>
+                            </div>
+                            <button class="add-to-cart-btn bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-full transition" data-name="Tropical Hawaiian" data-price="14.99">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <img src="https://images.unsplash.com/photo-1601924994987-69e26d50dc36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Pizza Chef" class="rounded-lg shadow-lg w-full">
+                </div>
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">Our Story</h2>
+                    <p class="text-gray-600 mb-4">Founded in 2010, Slice Heaven began as a small family-owned pizzeria in the heart of the city. Our founder, Chef Marco, brought authentic Italian pizza-making techniques from Naples to create the perfect pizza experience.</p>
+                    <p class="text-gray-600 mb-6">Today, we continue that tradition with the same passion and dedication to quality ingredients and craftsmanship that made us famous.</p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <div class="flex items-center mb-2">
+                                <div class="bg-red-100 p-2 rounded-full mr-3">
+                                    <i class="fas fa-award text-red-500"></i>
+                                </div>
+                                <h3 class="font-bold text-gray-800">Best Pizza 2023</h3>
+                            </div>
+                            <p class="text-gray-600 text-sm">Awarded by Food & Wine Magazine</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <div class="flex items-center mb-2">
+                                <div class="bg-red-100 p-2 rounded-full mr-3">
+                                    <i class="fas fa-leaf text-red-500"></i>
+                                </div>
+                                <h3 class="font-bold text-gray-800">Fresh Ingredients</h3>
+                            </div>
+                            <p class="text-gray-600 text-sm">Locally sourced & organic when possible</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">What Our Customers Say</h2>
+                <div class="w-20 h-1 bg-red-500 mx-auto"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Customer" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-gray-800">Sarah Johnson</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"The Margherita pizza is absolutely divine! The crust is perfectly crispy yet chewy, and the ingredients taste so fresh. My new favorite pizza place!"</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Customer" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-gray-800">Michael Chen</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"I've tried almost every pizza on the menu and they're all fantastic. The Pepperoni Supreme has just the right amount of spice. Delivery is always prompt too."</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Customer" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold text-gray-800">Emily Rodriguez</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"As a vegetarian, I love the Garden Fresh pizza. The combination of vegetables is perfect and the crust is amazing. Even my meat-loving friends enjoy it!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Visit Us or Order Online</h2>
+                <div class="w-20 h-1 bg-red-500 mx-auto"></div>
+            </div>
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="md:w-1/2 bg-white p-8 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6">Our Location</h3>
+                    <div class="mb-6">
+                        <div class="flex items-start mb-4">
+                            <i class="fas fa-map-marker-alt text-red-500 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Address</h4>
+                                <p class="text-gray-600">123 Pizza Street, Foodville, NY 10001</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start mb-4">
+                            <i class="fas fa-phone-alt text-red-500 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Phone</h4>
+                                <p class="text-gray-600">(555) 123-4567</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-envelope text-red-500 mt-1 mr-3"></i>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Email</h4>
+                                <p class="text-gray-600">hello@sliceheaven.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="font-bold text-gray-800 mb-4">Hours of Operation</h4>
+                    <div class="space-y-2 text-gray-600">
+                        <div class="flex justify-between">
+                            <span>Monday - Thursday</span>
+                            <span>11:00 AM - 10:00 PM</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Friday - Saturday</span>
+                            <span>11:00 AM - 11:00 PM</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Sunday</span>
+                            <span>12:00 PM - 9:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 bg-white p-8 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6">Order Online</h3>
+                    <form>
+                        <div class="mb-4">
+                            <label for="name" class="block text-gray-700 font-medium mb-2">Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
+                        </div>
+                        <div class="mb-4">
+                            <label for="phone" class="block text-gray-700 font-medium mb-2">Phone Number</label>
+                            <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
+                        </div>
+                        <div class="mb-4">
+                            <label for="address" class="block text-gray-700 font-medium mb-2">Delivery Address</label>
+                            <textarea id="address" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"></textarea>
+                        </div>
+                        <div class="mb-6">
+                            <label for="order" class="block text-gray-700 font-medium mb-2">Your Order</label>
+                            <textarea id="order" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-4 rounded-lg transition duration-300">Place Order</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-12 bg-red-500 text-white">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold mb-4">Join Our Pizza Club</h2>
+            <p class="mb-6 max-w-2xl mx-auto">Subscribe to our newsletter and get 10% off your first order plus exclusive deals and updates.</p>
+            <form class="flex flex-col sm:flex-row gap-2 max-w-md mx-auto">
+                <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-lg focus:outline-none text-gray-800">
+                <button type="submit" class="bg-white text-red-500 font-bold px-6 py-3 rounded-lg hover:bg-gray-100 transition">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-pizza-slice text-2xl text-red-500"></i>
+                        <span class="logo-text text-xl ml-2">Slice Heaven</span>
+                    </div>
+                    <p class="text-gray-400">Crafting authentic Italian pizzas with passion since 2010.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="#menu" class="text-gray-400 hover:text-white transition">Menu</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition">About Us</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-yelp"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Payment Methods</h4>
+                    <div class="flex flex-wrap gap-3">
+                        <i class="fab fa-cc-visa text-2xl text-gray-400"></i>
+                        <i class="fab fa-cc-mastercard text-2xl text-gray-400"></i>
+                        <i class="fab fa-cc-amex text-2xl text-gray-400"></i>
+                        <i class="fab fa-cc-discover text-2xl text-gray-400"></i>
+                        <i class="fab fa-cc-paypal text-2xl text-gray-400"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+                <p>&copy; 2023 Slice Heaven. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Modal -->
+    <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md max-h-[80vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold text-gray-800">Your Order</h3>
+                    <button id="close-cart" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div id="cart-items" class="space-y-4 mb-6">
+                    <!-- Cart items will be added here dynamically -->
+                    <div class="text-center text-gray-500 py-8">
+                        <i class="fas fa-shopping-cart text-4xl mb-4"></i>
+                        <p>Your cart is empty</p>
+                    </div>
+                </div>
+                <div class="border-t border-gray-200 pt-4 mb-6">
+                    <div class="flex justify-between mb-2">
+                        <span class="font-medium">Subtotal:</span>
+                        <span id="cart-subtotal" class="font-medium">$0.00</span>
+                    </div>
+                    <div class="flex justify-between mb-2">
+                        <span>Delivery Fee:</span>
+                        <span>$3.99</span>
+                    </div>
+                    <div class="flex justify-between text-lg font-bold">
+                        <span>Total:</span>
+                        <span id="cart-total">$3.99</span>
+                    </div>
+                </div>
+                <button id="checkout-btn" class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-4 rounded-lg transition duration-300">
+                    Proceed to Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Shopping Cart Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const cartBtn = document.getElementById('cart-btn');
+            const cartModal = document.getElementById('cart-modal');
+            const closeCart = document.getElementById('close-cart');
+            const cartItems = document.getElementById('cart-items');
+            const cartSubtotal = document.getElementById('cart-subtotal');
+            const cartTotal = document.getElementById('cart-total');
+            const cartCount = document.getElementById('cart-count');
+            const addToCartBtns = document.querySelectorAll('.add-to-cart-btn');
+            const checkoutBtn = document.getElementById('checkout-btn');
+            
+            let cart = [];
+            
+            // Open cart modal
+            cartBtn.addEventListener('click', function() {
+                cartModal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            // Close cart modal
+            closeCart.addEventListener('click', function() {
+                cartModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Close modal when clicking outside
+            cartModal.addEventListener('click', function(e) {
+                if (e.target === cartModal) {
+                    cartModal.classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Add to cart functionality
+            addToCartBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const name = this.getAttribute('data-name');
+                    const price = parseFloat(this.getAttribute('data-price'));
+                    
+                    // Check if item already exists in cart
+                    const existingItem = cart.find(item => item.name === name);
+                    
+                    if (existingItem) {
+                        existingItem.quantity += 1;
+                    } else {
+                        cart.push({
+                            name: name,
+                            price: price,
+                            quantity: 1
+                        });
+                    }
+                    
+                    updateCart();
+                    
+                    // Animation feedback
+                    this.innerHTML = '<i class="fas fa-check mr-2"></i> Added';
+                    this.classList.remove('bg-red-500', 'hover:bg-red-600');
+                    this.classList.add('bg-green-500', 'hover:bg-green-600');
+                    
+                    setTimeout(() => {
+                        this.innerHTML = 'Add to Cart';
+                        this.classList.remove('bg-green-500', 'hover:bg-green-600');
+                        this.classList.add('bg-red-500', 'hover:bg-red-600');
+                    }, 1500);
+                });
+            });
+            
+            // Update cart UI
+            function updateCart() {
+                // Update cart count
+                const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+                cartCount.textContent = totalItems;
+                
+                // Update cart items list
+                if (cart.length === 0) {
+                    cartItems.innerHTML = `
+                        <div class="text-center text-gray-500 py-8">
+                            <i class="fas fa-shopping-cart text-4xl mb-4"></i>
+                            <p>Your cart is empty</p>
+                        </div>
+                    `;
+                } else {
+                    cartItems.innerHTML = cart.map(item => `
+                        <div class="cart-item flex justify-between items-center border-b border-gray-200 pb-4">
+                            <div>
+                                <h4 class="font-medium">${item.name}</h4>
+                                <p class="text-sm text-gray-500">$${item.price.toFixed(2)} × ${item.quantity}</p>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="font-medium mr-4">$${(item.price * item.quantity).toFixed(2)}</span>
+                                <button class="remove-item text-red-500 hover:text-red-700" data-name="${item.name}">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `).join('');
+                    
+                    // Add event listeners to remove buttons
+                    document.querySelectorAll('.remove-item').forEach(btn => {
+                        btn.addEventListener('click', function() {
+                            const name = this.getAttribute('data-name');
+                            cart = cart.filter(item => item.name !== name);
+                            updateCart();
+                        });
+                    });
+                }
+                
+                // Update subtotal and total
+                const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+                cartSubtotal.textContent = `$${subtotal.toFixed(2)}`;
+                
+                const deliveryFee = 3.99;
+                const total = subtotal + deliveryFee;
+                cartTotal.textContent = `$${total.toFixed(2)}`;
+            }
+            
+            // Checkout button
+            checkoutBtn.addEventListener('click', function() {
+                if (cart.length === 0) {
+                    alert('Your cart is empty!');
+                    return;
+                }
+                
+                alert('Thank you for your order! Our team will contact you shortly.');
+                cart = [];
+                updateCart();
+                cartModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
